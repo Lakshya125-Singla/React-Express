@@ -1,0 +1,302 @@
+/* For making background animated */
+body {
+  font-family: "Poppins", sans-serif;
+  background: #0d0d0d;
+  color: #f9f9f9;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Animated 3D wave grid */
+body::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.15) 2px, transparent 2px);
+  background-size: 60px 60px;
+  animation: waveMove 12s linear infinite;
+  transform: perspective(500px) rotateX(60deg);
+  z-index: -1;
+}
+
+@keyframes waveMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 60px 60px;
+  }
+}
+
+/* Container with particles */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 2px, transparent 2px);
+  background-size: 50px 50px;
+  animation: moveStars 20s linear infinite;
+  z-index: -1;
+}
+
+@keyframes moveStars {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100px 100px;
+  }
+} 
+
+
+/* New Style*/
+
+/* Main Container */
+.app {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Title */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+  animation: fadeInDown 0.6s ease;
+}
+
+/* Input Section */
+.todo-input {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+/* Input Field */
+.todo-input input {
+  flex: 1;
+  min-width: 220px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.todo-input input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 8px #00f5d4, 0 0 15px #00bbf9;
+  transform: scale(1.02);
+}
+
+/* Add Button */
+.todo-input button {
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #00f5d4, #00bbf9);
+  color: #000;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.todo-input button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #00bbf9, #4361ee);
+  color: #fff;
+}
+
+/* Ripple Effect */
+.todo-input button:active::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  animation: ripple 0.5s linear;
+}
+
+@keyframes ripple {
+  from {
+    transform: scale(0);
+    opacity: 1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Fade In Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .todo-input {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .todo-input button {
+    width: 100%;
+  }
+}
+
+
+/* Old Style */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Todo List */
+ul {
+  list-style: none;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Todo Item */
+.todo {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+.todo:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Todo Text */
+.todo-text {
+  flex: 1;
+  font-size: 1rem;
+  word-break: break-word;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Completed Todo */
+.todo.completed .todo-text {
+  text-decoration: line-through;
+  color: #a0aec0;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* Buttons */
+.button-group button {
+  border: none;
+  outline: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+/* Done/Undo button */
+.button-group button:first-child {
+  background: #38b000;
+  color: #fff;
+}
+
+.button-group button:first-child:hover {
+  background: #2d8600;
+  transform: scale(1.05);
+}
+
+/* Delete button */
+.button-group button:last-child {
+  background: #e63946;
+  color: #fff;
+}
+
+.button-group button:last-child:hover {
+  background: #c1121f;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Friendly */
+@media (max-width: 600px) {
+  .todo {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .button-group {
+    margin-top: 10px;
+    width: 100%;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .button-group button {
+    flex: 1;
+    padding: 10px;
+  }
+}
