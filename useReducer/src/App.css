@@ -1,0 +1,88 @@
+.game-box {
+  max-width: 350px;
+  width: 100%;
+}
+ 
+input[type="text"] {
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+#undo{
+  padding: 20px;
+}
+#undo button{
+  width: 100px;
+  margin: 5px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.board-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 4px solid #333;
+}
+
+.cell-box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  font-size: 2.5rem;
+  border: 2px solid #333;
+  background: #f8f9fa;
+  transition: transform 0.2s ease;
+}
+
+.cell-box:hover:not(:disabled) {
+  transform: scale(1.05);
+  background: #e9ecef;
+}
+
+.animate-in {
+  animation: popIn 0.4s ease forwards;
+  display: inline-block;
+}
+
+.winner {
+  background-color: #ffe066 !important;
+  animation: pulse 1s infinite;
+}
+
+.celebration {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #28a745;
+  animation: bounce 1s infinite;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0) rotate(-90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
